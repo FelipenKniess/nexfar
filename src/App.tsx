@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from './Components/Header';
+import GlobalCss from './assets/styles/global';
 
 const App = () => (
-  <h2>Hello</h2>
+  <>
+    <Header />
+    <GlobalCss />
+  </>
 );
 
 export default App;
