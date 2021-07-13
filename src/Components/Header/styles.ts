@@ -31,10 +31,16 @@ export const Container = styled.header`
       }
 
       .price-cart {
+        display: block;
+        text-decoration: none;
         color: #3cba92;
 
         span {
+          font-size: 18px;
           margin-left: 10px;
+        }
+
+        :hover {
           font-weight: bold;
         }
       }

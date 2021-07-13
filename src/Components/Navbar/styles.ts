@@ -65,16 +65,16 @@ export const Container = styled.nav`
         display: flex;
         align-items: center;
         padding: 0 25px;
+
+        :hover {
+          background: #ebebff;
+          border-radius: 20px 0px 0px 20px;
+          color: #3cba92;
+        }
       }
 
       span {
         margin-left: 16px;
-      }
-
-      a:hover {
-        background: #ebebff;
-        border-radius: 20px 0px 0px 20px;
-        color: #3cba92;
       }
     }
   }

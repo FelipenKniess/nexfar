@@ -22,4 +22,8 @@ export default createGlobalStyle`
   button {
       cursor: pointer;
   }
+
+  .content {
+    margin: 30px 30px 30px 280px;
+  }
 `;
