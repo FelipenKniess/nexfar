@@ -7,11 +7,11 @@ import { MdRemoveCircleOutline, MdAddCircleOutline } from 'react-icons/md';
 import { FaBarcode } from 'react-icons/fa';
 
 import FormatValue from '../../utils/formatValue';
-import { dataProducts, dataType } from '../../utils/dataProducts';
+import { dataProducts, DataProduct } from '../../utils/dataProducts';
 import { Container } from './styles';
 
 const Products:React.FC = () => {
-  const [products, setProducts] = useState<dataType[]>([]);
+  const [products, setProducts] = useState<DataProduct[]>([]);
 
   useEffect(() => {
     getDataProducts();

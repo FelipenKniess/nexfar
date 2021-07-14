@@ -1,4 +1,4 @@
-export type dataType = {
+export type DataProduct = {
   id: string,
   sku: string,
   name: string,
@@ -18,9 +18,11 @@ export type dataType = {
   quantityAvailable: number,
   validUntil: number,
   imageURL: string,
+  quantityCart?: number,
+  valueTotal?: number,
 }
 
-export const dataProducts:Array<dataType> = [
+export const dataProducts:Array<DataProduct> = [
   {
     id: '5fa2999664313a3718a1e0d5',
     sku: 'P00033914',
