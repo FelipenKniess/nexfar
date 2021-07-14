@@ -69,6 +69,10 @@ export const Container = styled.div`
         border-radius: 20px;
         padding: 20px;
 
+        & + .product-item {
+          margin-top: 20px;
+        }
+
         .info {
           display: flex;
           align-items: center;
@@ -107,7 +111,8 @@ export const Container = styled.div`
           width: 100%;
 
           img {
-            width: 140px;
+            width: 150px;
+            height: 150px;
           }
 
           .values-product {
@@ -126,7 +131,7 @@ export const Container = styled.div`
                 flex-direction: column;
 
                 .head {
-                  color: gray;
+                  color: #808080;
                   margin-bottom: 20px;
                 }
               }
@@ -152,28 +157,31 @@ export const Container = styled.div`
                 .result {
                   .icon-add {
                     margin-left:5px;
-
-                    span {
-                      text-decoration: underline;
-                    }
+                    cursor:pointer;
 
                     path {
-                      color: green;
+                      color: #39FF14;
                     }
+                  }
+
+                  .quantity-value {
+                    text-decoration: underline;
                   }
 
                   .icon-remove {
                     margin-right: 5px;
+                    cursor:pointer;
                     path {
-                      color: red;
+                      color: #ff0000;
                     }
                   }
                 }
               }
 
               .icon-trash {
+                cursor: pointer;
                 path {
-                  color: red;
+                  color: #ff0000;
                 }
               }
             }

@@ -24,6 +24,6 @@ export default createGlobalStyle`
   }
 
   .content {
-    margin: 30px 30px 30px 280px;
+    margin: 130px 30px 30px 280px;
   }
 `;
