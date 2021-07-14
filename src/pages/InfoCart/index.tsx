@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
 
-const Checkout = () => (
+const Checkout:React.FC = () => (
   <Container className="content">
     <h1>Checkout</h1>
   </Container>
