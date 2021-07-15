@@ -2,11 +2,13 @@ import React, {
   createContext, ReactNode, useContext, useState,
 } from 'react';
 
+import { toast } from 'react-toastify';
+
 import { DataProduct, dataProducts } from '../utils/dataProducts';
 
 interface CartContextData {
   cart: DataProduct[];
-  addProduct: (productId: string) => void;
+  addProduct: (Product: DataProduct) => void;
   removeProduct: (productId: string) => void;
   // updateProductAmount: () => void;
 }
@@ -28,44 +30,45 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     return [];
   });
 
-  const addProduct = (productId: string) => {
-    const productAlreadyInCart = cart.find((item) => item.id === productId);
+  const addProduct = (Product: DataProduct) => {
+    const productAlreadyInCart = cart.find((item) => item.id === Product.id);
 
     if (!productAlreadyInCart) {
-      const [product] = dataProducts.filter((item) => item.id === productId);
-      const stock = product.quantityAvailable;
+      const stock = Product.quantityAvailable;
 
       if (stock > 0) {
-        localStorage.setItem('@Nexfar:cart', JSON.stringify([...cart, { ...product, quantityCart: 1 }]));
-        setCart([...cart, { ...product, quantityCart: 1 }]);
-        // toast('Adicionado');
+        localStorage.setItem('@Nexfar:cart', JSON.stringify([...cart, { ...Product, quantityCart: 1 }]));
+        setCart([...cart, { ...Product, quantityCart: 1 }]);
+        toast('Produto adicionado no carrinho!');
       }
     }
 
     if (productAlreadyInCart) {
-      const [product] = dataProducts.filter((item) => item.id === productId);
-      const stock = product.quantityAvailable;
+      const stock = Product.quantityAvailable;
 
-      const updatedCart = cart.map((cartItem) => (cartItem.id === productId ? {
+      const updatedCart = cart.map((cartItem) => (cartItem.id === Product.id ? {
         ...cartItem,
         quantityCart: Number(cartItem.quantityCart) + 1,
       } : cartItem));
 
       setCart(updatedCart);
       localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
+      toast('Alterado quantidade do produto no carrinho!');
     }
   };
 
   const removeProduct = (productId: string) => {
     const productExists = cart.some((cartProduct) => cartProduct.id === productId);
     if (!productExists) {
-      // toast.error('Este produto não está no carrinho');
+      toast('Alterado quantidade do produto no carrinho!');
       return;
     }
 
     const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
     setCart(updatedCart);
     localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
+
+    toast('Removido produto do carrinho!');
   };
 
   // const updateProductAmount = async ({

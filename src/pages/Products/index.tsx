@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react';
-// import axios from 'axios';
 
 import { BsSearch, BsTrash } from 'react-icons/bs';
 import { AiOutlineInfoCircle, AiOutlineDropbox } from 'react-icons/ai';
@@ -12,17 +11,30 @@ import { dataProducts, DataProduct } from '../../utils/dataProducts';
 import { Container } from './styles';
 
 const Products:React.FC = () => {
-  const [products, setProducts] = useState<DataProduct[]>([]);
+  const [products, setProducts] = useState<DataProduct[]>(() => {
+    const storagedProducts = localStorage.getItem('@Nexfar:products');
+
+    if (storagedProducts) {
+      return JSON.parse(storagedProducts);
+    }
+
+    localStorage.setItem('@Nexfar:products', JSON.stringify(dataProducts));
+    return dataProducts;
+  });
 
   const { addProduct, removeProduct } = useCart();
 
-  useEffect(() => {
-    getDataProducts();
+  const handleAddItemCart = useCallback((Product: DataProduct) => {
+    addProduct(Product);
+  }, [addProduct]);
 
-    async function getDataProducts() {
-      // const { data } = await axios.get('https://nexfar-static-public.s3-sa-east-1.amazonaws.com/j-application/products.json');
-      setProducts(dataProducts);
-    }
+  const handleRemoveQtdItemCart = useCallback((idProduct: string) => {
+    console.log(`removeCart ${idProduct}`);
+  }, []);
+
+  const handleRemoveItemCart = useCallback((idProduct: string) => {
+    removeProduct(idProduct);
+    console.log(`removeCart ${idProduct}`);
   }, []);
 
   return (
@@ -88,10 +100,13 @@ const Products:React.FC = () => {
                   </div>
 
                   <div className="quantity">
-                    <span className="head">Ações</span>
+                    <span className="head">Quantidade</span>
                     <span className="result">
-                      <MdRemoveCircleOutline className="icon-remove" size={26} />
-                      <MdAddCircleOutline onClick={() => addProduct(product.id)} className="icon-add" size={26} />
+                      <MdRemoveCircleOutline onClick={() => handleRemoveQtdItemCart(product.id)} className="icon-remove" size={26} />
+                      <span>
+                        {!product.quantityCart ? 0 : product.quantityCart}
+                      </span>
+                      <MdAddCircleOutline onClick={() => handleAddItemCart(product)} className="icon-add" size={26} />
                     </span>
                   </div>
 
@@ -102,7 +117,7 @@ const Products:React.FC = () => {
                     </span>
                   </div>
 
-                  <BsTrash onClick={() => removeProduct(product.id)} className="icon-trash" size={20} />
+                  <BsTrash onClick={() => handleRemoveItemCart(product.id)} className="icon-trash" size={20} />
 
                 </div>
               </div>

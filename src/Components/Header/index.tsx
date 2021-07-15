@@ -6,9 +6,12 @@ import { Container } from './styles';
 import Logo from '../../assets/images/Logo.png';
 import { useCart } from '../../hooks/useCart';
 import FormatValue from '../../utils/formatValue';
+import GetTotalCart from '../../utils/getTotalCart';
 
 const Header:React.FC = () => {
   const { cart } = useCart();
+
+  const totalCart = GetTotalCart(cart);
 
   return (
     <Container>
@@ -19,7 +22,7 @@ const Header:React.FC = () => {
           <span className="title">NexFar</span>
           <Link to="/carrinho" className="price-cart">
             <FiShoppingCart size={22} color="#3cba92" />
-            <span>{FormatValue(0)}</span>
+            <span>{FormatValue(totalCart)}</span>
           </Link>
           <span className="min-order">Pedido mínimo: R$150,00</span>
         </div>
