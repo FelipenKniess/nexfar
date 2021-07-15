@@ -23,6 +23,11 @@ export default createGlobalStyle`
       cursor: pointer;
   }
 
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
   .content {
     margin: 130px 30px 30px 280px;
   }

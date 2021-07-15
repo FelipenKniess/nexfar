@@ -4,30 +4,36 @@ import { Link } from 'react-router-dom';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { Container } from './styles';
 import Logo from '../../assets/images/Logo.png';
+import { useCart } from '../../hooks/useCart';
+import FormatValue from '../../utils/formatValue';
 
-const Header:React.FC = () => (
-  <Container>
-    <img src={Logo} className="logo" alt="NexFar" />
+const Header:React.FC = () => {
+  const { cart } = useCart();
 
-    <div className="info-header">
-      <div className="cart">
-        <span className="title">NexFar</span>
-        <Link to="/infoCart" className="price-cart">
-          <FiShoppingCart size={22} color="#3cba92" />
-          <span>R$ 450,00</span>
-        </Link>
-        <span className="min-order">Pedido mínimo: R$150,00</span>
-      </div>
-      <div className="icon-notification">
-        <IoMdNotificationsOutline className="" size={30} />
-        <span>0</span>
-      </div>
+  return (
+    <Container>
+      <img src={Logo} className="logo" alt="NexFar" />
 
-      <div className="user">
-        U
+      <div className="info-header">
+        <div className="cart">
+          <span className="title">NexFar</span>
+          <Link to="/carrinho" className="price-cart">
+            <FiShoppingCart size={22} color="#3cba92" />
+            <span>{FormatValue(0)}</span>
+          </Link>
+          <span className="min-order">Pedido mínimo: R$150,00</span>
+        </div>
+        <div className="icon-notification">
+          <IoMdNotificationsOutline className="" size={30} />
+          <span>0</span>
+        </div>
+
+        <div className="user">
+          U
+        </div>
       </div>
-    </div>
-  </Container>
-);
+    </Container>
+  );
+};
 
 export default Header;

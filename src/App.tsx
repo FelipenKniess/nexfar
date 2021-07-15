@@ -4,13 +4,16 @@ import Header from './Components/Header';
 import NavBar from './Components/Navbar';
 import Routes from './routes';
 import GlobalCss from './assets/styles/global';
+import AppProvider from './hooks/appProvider';
 
 const App = () => (
   <BrowserRouter>
-    <Header />
-    <NavBar />
-    <Routes />
-    <GlobalCss />
+    <AppProvider>
+      <Header />
+      <NavBar />
+      <Routes />
+      <GlobalCss />
+    </AppProvider>
   </BrowserRouter>
 );
 

@@ -8,10 +8,10 @@ import Checkout from '../pages/Checkout';
 const Routes:React.FC = () => (
   <Switch>
     <Route path="/" exact>
-      <Redirect to="/products" />
+      <Redirect to="/produtos" />
     </Route>
-    <Route component={Products} path="/products" />
-    <Route component={InfoCart} path="/infoCart" />
+    <Route component={Products} path="/produtos" />
+    <Route component={InfoCart} path="/carrinho" />
     <Route component={Checkout} path="/checkout" />
   </Switch>
 );

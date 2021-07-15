@@ -6,9 +6,8 @@ import { DataProduct, dataProducts } from '../utils/dataProducts';
 
 interface CartContextData {
   cart: DataProduct[];
-  // total: number;
   addProduct: (productId: string) => void;
-  // removeProduct: () => void;
+  removeProduct: (productId: string) => void;
   // updateProductAmount: () => void;
 }
 
@@ -29,8 +28,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     return [];
   });
 
-  // const [totalValueCart, setTotalValueCart] = useState(0);
-
   const addProduct = (productId: string) => {
     const productAlreadyInCart = cart.find((item) => item.id === productId);
 
@@ -39,44 +36,37 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       const stock = product.quantityAvailable;
 
       if (stock > 0) {
-        setCart([...cart, { ...product, quantityCart: 1 }]);
         localStorage.setItem('@Nexfar:cart', JSON.stringify([...cart, { ...product, quantityCart: 1 }]));
+        setCart([...cart, { ...product, quantityCart: 1 }]);
         // toast('Adicionado');
       }
     }
 
-    // if (productAlreadyInCart) {
-    //   const { data: stock } = api.get(`stock/${productId}`);
+    if (productAlreadyInCart) {
+      const [product] = dataProducts.filter((item) => item.id === productId);
+      const stock = product.quantityAvailable;
 
-    //   if (stock.amount > productAlreadyInCart.amount) {
-    //     const updatedCart = cart.map((cartItem) => (cartItem.id === productId ? {
-    //       ...cartItem,
-    //       amount: Number(cartItem.amount) + 1,
-    //     } : cartItem));
+      const updatedCart = cart.map((cartItem) => (cartItem.id === productId ? {
+        ...cartItem,
+        quantityCart: Number(cartItem.quantityCart) + 1,
+      } : cartItem));
 
-    //     setCart(updatedCart);
-    //     localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
-    //     return;
-    //   }
-    //   //toast.error('Quantidade solicitada fora de estoque');
-    // }
+      setCart(updatedCart);
+      localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
+    }
   };
 
-  // const removeProduct = (productId: number) => {
-  //   try {
-  //     const productExists = cart.some((cartProduct) => cartProduct.id === productId);
-  //     if (!productExists) {
-  //       toast.error('Erro na remoção do produto');
-  //       return;
-  //     }
+  const removeProduct = (productId: string) => {
+    const productExists = cart.some((cartProduct) => cartProduct.id === productId);
+    if (!productExists) {
+      // toast.error('Este produto não está no carrinho');
+      return;
+    }
 
-  //     const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
-  //     setCart(updatedCart);
-  //     localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
-  //   } catch {
-  //     toast.error('Erro na remoção do produto');
-  //   }
-  // };
+    const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
+    setCart(updatedCart);
+    localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
+  };
 
   // const updateProductAmount = async ({
   //   productId,
@@ -115,7 +105,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   // };
 
   return (
-    <CartContext.Provider value={{ cart, addProduct }}>
+    <CartContext.Provider value={{
+      cart, addProduct, removeProduct,
+    }}
+    >
       {children}
     </CartContext.Provider>
   );
