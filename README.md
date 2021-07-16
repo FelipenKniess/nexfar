@@ -4,6 +4,11 @@
 ## Problemas nos quais me deparei na execução do projeto
 - As APIs disponibilizadas para consumo dos dados, estão dando erro de Cors ao acessa-las. a melhor forma de corrigir isso é adicionando a biblioteca Cors na própria API. como não tenho acesso a isso, copiei os dados que a API gera e coloquei dentro de um arquivo da aplicação.
 
+## Rotas da aplicação
+- /Produtos
+- /Carrinho (acesso no carrinho do header)
+- /Pagamento
+
 ## Maneiras que eu poderia melhorar essa aplicação
 - Aplicar paginação na página do produto;
 - Aplicar filtros na página do produto;
