@@ -4,7 +4,7 @@ import React, {
 
 import { toast } from 'react-toastify';
 
-import { DataProduct, dataProducts } from '../utils/dataProducts';
+import { DataProduct } from '../utils/dataProducts';
 
 interface CartContextData {
   cart: DataProduct[];

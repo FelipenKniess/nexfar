@@ -3,7 +3,7 @@ import { Container } from './styles';
 
 const Products:React.FC = () => (
   <Container className="content">
-    <h1>Products</h1>
+    <h1>Formas de pagamento</h1>
   </Container>
 );
 

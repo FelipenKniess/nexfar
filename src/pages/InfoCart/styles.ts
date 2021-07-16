@@ -47,6 +47,8 @@ export const Container = styled.div`
         font-size: 14px;
         cursor: pointer;
         margin-left: 25px;
+        background: none;
+        margin-right: 200px;
         color: #f62854;
         text-transform: uppercase;
         padding: 10px;
@@ -65,7 +67,6 @@ export const Container = styled.div`
 
   .box-content {
     display: flex;
-    flex-direction: column;
 
     .cart-values {
       width: 70%;
@@ -83,6 +84,31 @@ export const Container = styled.div`
         margin-top: 5px;
         text-align: right;
         font-weight: bold;
+      }
+    }
+
+    .total-values {
+      margin-left:30px;
+
+      .values {
+        display: flex;
+        text-align: center;
+
+        strong {
+          font-weight: bold;
+        }
+
+        span + span {
+          margin-left: 100px;
+        }
+      }
+
+      .total {
+        text-align: center;
+        margin-top: 25px;
+        strong {
+          font-weight: bold;
+        }
       }
     }
   }

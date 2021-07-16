@@ -129,6 +129,7 @@ export const Container = styled.div`
               .value-total {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
 
                 .head {
                   color: #808080;
@@ -190,16 +191,16 @@ export const Container = styled.div`
                     }
                   }
 
-                  .quantity-value {
-                    text-decoration: underline;
-                  }
-
                   .icon-remove {
                     margin-right: 5px;
                     cursor:pointer;
                     path {
                       color: #ff0000;
                     }
+                  }
+
+                  span {
+                    padding: 10px;
                   }
                 }
               }

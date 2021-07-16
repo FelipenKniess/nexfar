@@ -6,8 +6,7 @@
 
 ## Rotas da aplicação
 - /Produtos
-- /Carrinho (acesso no carrinho do header)
-- /Pagamento
+- /Carrinho (acesso via carrinho do header)
 
 ## Maneiras que eu poderia melhorar essa aplicação
 - Aplicar paginação na página do produto;
@@ -15,23 +14,23 @@
 - Responsividade para Mobile;
 - Uso de APIs para trabalhar com os dados reais;
 
-## Bibliotecas utilizadas (Reactjs) 🚀 
+## Bibliotecas utilizadas (Reactjs) 🚀
 - Typescript
-- ContextAPI; 
+- ContextAPI;
 - Hooks;
-- Styled Components; 
+- Styled Components;
 - react-router-dom;
 - react-toastfy
 
 ## Execução do projeto em desenvolvimento
 - Requisítos: Instalar [Git](https://git-scm.com/), [Node](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/)
-- Baixar o repositório na máquina e entrar no projeto:  
+- Baixar o repositório na máquina e entrar no projeto:
 ```bash
 $ git clone https://github.com/FelipenKniess/nexfar.git
 $ cd nexfar
 ```
 - baixar as dependências do projeto e executar o projeto:
 ```bash
-$ yarn 
+$ yarn
 $ yarn start
 ```

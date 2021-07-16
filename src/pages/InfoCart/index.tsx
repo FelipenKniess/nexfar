@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { title } from 'process';
 import { Container } from './styles';
 import BoxInfo from '../../Components/BoxInfo';
 import { useCart } from '../../hooks/useCart';
@@ -20,10 +19,6 @@ const InfoCart = () => {
           Voltar
         </Link>
         <div className="actions">
-          <div className="payment">
-            Ir para Pagamento
-            <AiOutlineArrowRight size={18} />
-          </div>
           <button className="clean-cart" type="button" onClick={() => cleanCart()}>
             Limpar Carrinho
             <BsTrash size={18} />
@@ -42,11 +37,41 @@ const InfoCart = () => {
                   {' '}
                   un
                   -
+                  {' '}
                   {FormatValue(itemCart.price.price)}
                 </span>
               </div>
             ))}
-            <span className="value-total">{FormatValue(GetTotalCart(cart))}</span>
+            <span className="value-total">
+              Total:
+              {' '}
+              {FormatValue(GetTotalCart(cart))}
+            </span>
+          </BoxInfo>
+        </div>
+        <div className="total-values">
+          <BoxInfo title="Valores">
+            <div className="values">
+              <span>
+                Total
+                <br />
+                (sem impostos)
+                <br />
+                <strong>{FormatValue(GetTotalCart(cart))}</strong>
+              </span>
+
+              <span>
+                Imposto
+                <br />
+                <strong>{FormatValue(10)}</strong>
+              </span>
+            </div>
+
+            <span className="total">
+              Total:
+              <br />
+              <strong>{FormatValue(GetTotalCart(cart) + 10)}</strong>
+            </span>
           </BoxInfo>
         </div>
       </div>
