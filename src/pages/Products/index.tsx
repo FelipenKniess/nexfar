@@ -4,6 +4,7 @@ import { BsSearch, BsTrash } from 'react-icons/bs';
 import { AiOutlineInfoCircle, AiOutlineDropbox } from 'react-icons/ai';
 import { MdRemoveCircleOutline, MdAddCircleOutline } from 'react-icons/md';
 import { FaBarcode } from 'react-icons/fa';
+import { FiSmartphone } from 'react-icons/fi';
 
 import FormatValue from '../../utils/formatValue';
 import { useCart } from '../../hooks/useCart';
@@ -123,9 +124,22 @@ const Products:React.FC = () => {
                   <div className="stock">
                     <span className="head">Estoque</span>
                     <span className="result">
-                      <AiOutlineDropbox size={22} />
-                      {product.quantityAvailable}
-                      un
+                      {product.quantityAvailable > 0 ? (
+                        <>
+                          <AiOutlineDropbox size={22} />
+                          {product.quantityAvailable}
+                          {' '}
+                          un
+                        </>
+                      ) : (
+                        <>
+                          <FiSmartphone size={22} />
+                          <div className="no-stock">
+                            <span className="no-stock-desc">Sem estoque</span>
+                            <span className="avisa-me">Avisa-me</span>
+                          </div>
+                        </>
+                      )}
                     </span>
                   </div>
 

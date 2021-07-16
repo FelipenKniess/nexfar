@@ -133,6 +133,7 @@ export const Container = styled.div`
                 .head {
                   color: #808080;
                   margin-bottom: 20px;
+                  text-align:center;
                 }
               }
               .base {
@@ -143,8 +144,33 @@ export const Container = styled.div`
               }
 
               .stock {
+                display: flex;
+
+                .result{
+                  display: flex;
+                }
+
                 .result svg {
                   margin-right: 5px;
+                }
+
+                .no-stock {
+                  display: flex;
+                  flex-direction: column;
+                  font-size: 12px;
+                  text-transform: uppercase;
+
+                  .avisa-me {
+                    margin-top: 5px;
+                    text-align: center;
+                    background: #c3c3c3;
+                    border-radius: 10px;
+                    cursor: pointer;
+
+                     &:hover {
+                       font-weight: bold;
+                     }
+                  }
                 }
               }
               .value-total {

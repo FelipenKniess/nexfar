@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,11 @@ import GetTotalCart from '../../utils/getTotalCart';
 
 const InfoCart = () => {
   const { cart } = useCart();
+
+  function handleCleanCart() {
+    console.log('teste');
+  }
+
   return (
     <Container className="content">
       <div className="header-cart">
