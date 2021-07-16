@@ -52,6 +52,10 @@ export const Container = styled.div`
         padding: 10px;
         border-radius: 20px;
 
+        &:hover {
+          font-weight: bold;
+        }
+
         svg {
           margin-left: 10px;
         }

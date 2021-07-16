@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AiOutlineShop } from 'react-icons/ai';
 import { SidebarDataPurchases, SidebarDataAdministrative, SidebarDataHelp } from './SideBarData';
 import { Container } from './styles';
@@ -25,10 +25,10 @@ const Navbar = () => (
           cName, icon, path, title,
         }) => (
           <li key={title} className={cName}>
-            <a href={path}>
+            <Link to={path}>
               {icon}
               <span>{title}</span>
-            </a>
+            </Link>
           </li>
         ))}
 

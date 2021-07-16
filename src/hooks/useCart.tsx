@@ -11,6 +11,7 @@ interface CartContextData {
   addProduct: (Product: DataProduct) => void;
   removeProduct: (Product: DataProduct) => void;
   removeQtdItemCart: (Product: DataProduct) => void;
+  cleanCart: () => void;
 }
 
 interface CartProviderProps {
@@ -100,9 +101,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     toast('Alterado quantidade do produto no carrinho!');
   };
 
+  const cleanCart = () => {
+    localStorage.removeItem('@Nexfar:cart');
+    localStorage.removeItem('@Nexfar:products');
+    setCart([]);
+    toast('Carrinho limpado!');
+  };
+
   return (
     <CartContext.Provider value={{
-      cart, addProduct, removeProduct, removeQtdItemCart,
+      cart, addProduct, removeProduct, removeQtdItemCart, cleanCart,
     }}
     >
       {children}

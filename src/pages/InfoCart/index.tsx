@@ -10,11 +10,7 @@ import FormatValue from '../../utils/formatValue';
 import GetTotalCart from '../../utils/getTotalCart';
 
 const InfoCart = () => {
-  const { cart } = useCart();
-
-  function handleCleanCart() {
-    console.log('teste');
-  }
+  const { cart, cleanCart } = useCart();
 
   return (
     <Container className="content">
@@ -28,10 +24,10 @@ const InfoCart = () => {
             Ir para Pagamento
             <AiOutlineArrowRight size={18} />
           </div>
-          <div className="clean-cart">
+          <button className="clean-cart" type="button" onClick={() => cleanCart()}>
             Limpar Carrinho
             <BsTrash size={18} />
-          </div>
+          </button>
         </div>
       </div>
 

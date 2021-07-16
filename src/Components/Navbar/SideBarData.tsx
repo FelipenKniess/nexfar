@@ -50,7 +50,7 @@ export const SidebarDataAdministrative:SideBarDataType[] = [
 export const SidebarDataHelp:SideBarDataType[] = [
   {
     title: 'Whatsapp',
-    path: 'https://api.whatsapp.com/send?phone=5547997909471&text=Ol%C3%A1%2C%20tudo%20bem%20com%20voc%C3%AA%3F',
+    path: '/whatsapp',
     icon: <AiIcons.AiOutlineWhatsApp size={25} />,
     cName: 'nav-text',
   },
