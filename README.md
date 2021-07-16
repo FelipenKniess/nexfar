@@ -8,7 +8,7 @@
 - /Produtos
 - /Carrinho (acesso via carrinho do header)
 
-## Maneiras que eu poderia melhorar essa aplicação
+## Alterações para melhorar essa aplicação
 - Aplicar paginação na página do produto;
 - Aplicar filtros na página do produto;
 - Responsividade para Mobile;
@@ -21,6 +21,7 @@
 - Styled Components;
 - react-router-dom;
 - react-toastfy
+- axios (caso a api não tivesse dado erro de cors)
 
 ## Execução do projeto em desenvolvimento
 - Requisítos: Instalar [Git](https://git-scm.com/), [Node](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/)
