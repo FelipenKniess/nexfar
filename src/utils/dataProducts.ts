@@ -18,7 +18,7 @@ export type DataProduct = {
   quantityAvailable: number,
   validUntil: number,
   imageURL: string,
-  quantityCart?: number,
+  quantityCart: number,
   valueTotal?: number,
 }
 
@@ -43,6 +43,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 99,
     validUntil: 1667228400000,
     imageURL: 'https://cfarma-public.s3-sa-east-1.amazonaws.com/images/nexfar-product-default-image.jpg',
+    quantityCart: 0,
   },
   {
     id: '5f77967fc3037641653d4ee8',
@@ -64,6 +65,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 0,
     validUntil: 1635692400000,
     imageURL: 'https://cfarma-public.s3-sa-east-1.amazonaws.com/images/nexfar-product-default-image.jpg',
+    quantityCart: 0,
   },
   {
     id: '5f6ca7c9da9a7566bdb84833',
@@ -85,6 +87,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 53,
     validUntil: 1664550000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/23/5f92da028cb461489e72b3b6.png',
+    quantityCart: 0,
   },
   {
     id: '5f620dc2adb11968f9db8739',
@@ -106,6 +109,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 1211,
     validUntil: 1659279600000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/9/5fa98aed980a47297e4b867a.png',
+    quantityCart: 0,
   },
   {
     id: '5f5a40f6adb11968f9db28cd',
@@ -127,6 +131,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 1143,
     validUntil: 1659279600000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/9/17/5f63cbdcb414ad2ee408573f.png',
+    quantityCart: 0,
   },
   {
     id: '5f5a40f6adb11968f9db28cc',
@@ -148,6 +153,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 1026,
     validUntil: 1659279600000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/9/17/5f63cbc88fd2e05df4c85dd4.png',
+    quantityCart: 0,
   },
   {
     id: '5f5ba065adb11968f9db39a9',
@@ -169,6 +175,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 207,
     validUntil: 1698764400000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/3/5fa1a8028cb461489e74bc3f.png',
+    quantityCart: 0,
   },
   {
     id: '5f58d341adb11968f9db171d',
@@ -190,6 +197,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 725,
     validUntil: 1664550000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/9/5fa9836a980a47297e4b7153.png',
+    quantityCart: 0,
   },
   {
     id: '5f58d340adb11968f9db171c',
@@ -211,6 +219,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 618,
     validUntil: 1661958000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/9/5fa9833a980a47297e4b707d.png',
+    quantityCart: 0,
   },
   {
     id: '5f58d340adb11968f9db171b',
@@ -232,6 +241,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 569,
     validUntil: 1661958000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/9/5fa98311980a47297e4b703a.png',
+    quantityCart: 0,
   },
   {
     id: '5f58c52aadb11968f9db1657',
@@ -253,6 +263,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 302,
     validUntil: 1696086000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/6/5f7c58b28acd6e339c6ea46c.png',
+    quantityCart: 0,
   },
   {
     id: '5f58c52aadb11968f9db1656',
@@ -274,6 +285,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 302,
     validUntil: 1696086000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/6/5f7c589dbafd472b7869bf6c.png',
+    quantityCart: 0,
   },
   {
     id: '5f58c52aadb11968f9db1655',
@@ -295,6 +307,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 297,
     validUntil: 1696086000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/6/5f7c58a68acd6e339c6ea466.png',
+    quantityCart: 0,
   },
   {
     id: '5f57e430adb11968f9db0c1b',
@@ -316,6 +329,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 260,
     validUntil: 1661958000000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/11/3/5fa16fb8e8fab24ed92f632d.png',
+    quantityCart: 0,
   },
   {
     id: '5f57e430adb11968f9db0c1a',
@@ -337,6 +351,7 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 65,
     validUntil: 1659279600000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/5/5f7b6c8abafd472b786989a9.png',
+    quantityCart: 0,
   },
   {
     id: '5f57d617adb11968f9db0b55',
@@ -358,5 +373,6 @@ export const dataProducts:Array<DataProduct> = [
     quantityAvailable: 0,
     validUntil: 1661180400000,
     imageURL: 'https://s3-sa-east-1.amazonaws.com/cfarma-documents-private/2020/10/5/5f7b60638acd6e339c6e6893.png',
+    quantityCart: 0,
   },
 ];

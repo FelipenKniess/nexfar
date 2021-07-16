@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { BsSearch, BsTrash } from 'react-icons/bs';
 import { AiOutlineInfoCircle, AiOutlineDropbox } from 'react-icons/ai';
@@ -19,23 +19,53 @@ const Products:React.FC = () => {
     }
 
     localStorage.setItem('@Nexfar:products', JSON.stringify(dataProducts));
+
     return dataProducts;
   });
 
-  const { addProduct, removeProduct } = useCart();
+  const { addProduct, removeProduct, removeQtdItemCart } = useCart();
 
   const handleAddItemCart = useCallback((Product: DataProduct) => {
     addProduct(Product);
-  }, [addProduct]);
 
-  const handleRemoveQtdItemCart = useCallback((idProduct: string) => {
-    console.log(`removeCart ${idProduct}`);
-  }, []);
+    if (Product.quantityAvailable > 0 && Product.quantityAvailable > Product.quantityCart) {
+      const updateProduct = products.map((productItem) => (productItem.id === Product.id ? {
+        ...Product,
+        quantityCart: Number(productItem.quantityCart) + 1,
+      } : productItem));
 
-  const handleRemoveItemCart = useCallback((idProduct: string) => {
-    removeProduct(idProduct);
-    console.log(`removeCart ${idProduct}`);
-  }, []);
+      setProducts(updateProduct);
+      localStorage.setItem('@Nexfar:products', JSON.stringify(updateProduct));
+    }
+  }, [addProduct, products]);
+
+  const handleRemoveQtdItemCart = useCallback((Product: DataProduct) => {
+    removeQtdItemCart(Product);
+
+    if (Product.quantityCart && Product.quantityCart > 0) {
+      const updateProduct = products.map((productItem) => (productItem.id === Product.id ? {
+        ...Product,
+        quantityCart: Number(productItem.quantityCart) - 1,
+      } : productItem));
+
+      setProducts(updateProduct);
+      localStorage.setItem('@Nexfar:products', JSON.stringify(updateProduct));
+    }
+  }, [products, removeQtdItemCart]);
+
+  const handleRemoveItemCart = useCallback((Product: DataProduct) => {
+    removeProduct(Product);
+
+    if (Product.quantityCart && Product.quantityCart > 0) {
+      const updateProduct = products.map((productItem) => (productItem.id === Product.id ? {
+        ...Product,
+        quantityCart: 0,
+      } : productItem));
+
+      setProducts(updateProduct);
+      localStorage.setItem('@Nexfar:products', JSON.stringify(updateProduct));
+    }
+  }, [removeProduct, products]);
 
   return (
     <Container className="content">
@@ -102,7 +132,7 @@ const Products:React.FC = () => {
                   <div className="quantity">
                     <span className="head">Quantidade</span>
                     <span className="result">
-                      <MdRemoveCircleOutline onClick={() => handleRemoveQtdItemCart(product.id)} className="icon-remove" size={26} />
+                      <MdRemoveCircleOutline onClick={() => handleRemoveQtdItemCart(product)} className="icon-remove" size={26} />
                       <span>
                         {!product.quantityCart ? 0 : product.quantityCart}
                       </span>
@@ -113,11 +143,13 @@ const Products:React.FC = () => {
                   <div className="value-total">
                     <span className="head">Valor</span>
                     <span className="result">
-                      {FormatValue(0)}
+                      {FormatValue(Number(
+                        !product.quantityCart ? 0 : product.quantityCart * product.price.price,
+                      ))}
                     </span>
                   </div>
 
-                  <BsTrash onClick={() => handleRemoveItemCart(product.id)} className="icon-trash" size={20} />
+                  <BsTrash onClick={() => handleRemoveItemCart(product)} className="icon-trash" size={20} />
 
                 </div>
               </div>

@@ -9,8 +9,8 @@ import { DataProduct, dataProducts } from '../utils/dataProducts';
 interface CartContextData {
   cart: DataProduct[];
   addProduct: (Product: DataProduct) => void;
-  removeProduct: (productId: string) => void;
-  // updateProductAmount: () => void;
+  removeProduct: (Product: DataProduct) => void;
+  removeQtdItemCart: (Product: DataProduct) => void;
 }
 
 interface CartProviderProps {
@@ -34,17 +34,23 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     const productAlreadyInCart = cart.find((item) => item.id === Product.id);
 
     if (!productAlreadyInCart) {
-      const stock = Product.quantityAvailable;
-
-      if (stock > 0) {
-        localStorage.setItem('@Nexfar:cart', JSON.stringify([...cart, { ...Product, quantityCart: 1 }]));
-        setCart([...cart, { ...Product, quantityCart: 1 }]);
-        toast('Produto adicionado no carrinho!');
+      if (Product.quantityCart + 1 > Product.quantityAvailable) {
+        toast('Produto sem estoque!');
+        return;
       }
+
+      localStorage.setItem('@Nexfar:cart', JSON.stringify([...cart, { ...Product, quantityCart: 1 }]));
+      setCart([...cart, { ...Product, quantityCart: 1 }]);
+      toast('Produto adicionado no carrinho!');
+
+      return;
     }
 
     if (productAlreadyInCart) {
-      const stock = Product.quantityAvailable;
+      if (Product.quantityCart > Product.quantityAvailable) {
+        toast('Excedido a quantidade de estoque do produto!');
+        return;
+      }
 
       const updatedCart = cart.map((cartItem) => (cartItem.id === Product.id ? {
         ...cartItem,
@@ -57,59 +63,46 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }
   };
 
-  const removeProduct = (productId: string) => {
-    const productExists = cart.some((cartProduct) => cartProduct.id === productId);
+  const removeProduct = (Product: DataProduct) => {
+    const productExists = cart.some((cartProduct) => cartProduct.id === Product.id);
     if (!productExists) {
-      toast('Alterado quantidade do produto no carrinho!');
+      toast('Esse produto não está no carrinho!');
       return;
     }
 
-    const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
+    const updatedCart = cart.filter((cartItem) => cartItem.id !== Product.id);
     setCart(updatedCart);
     localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
 
     toast('Removido produto do carrinho!');
   };
 
-  // const updateProductAmount = async ({
-  //   productId,
-  //   amount,
-  // }: UpdateProductAmount) => {
-  //   try {
-  //     if (amount < 1) {
-  //       toast.error('Erro na alteração de quantidade do produto');
-  //       return;
-  //     }
+  const removeQtdItemCart = (Product:DataProduct) => {
+    const productExistInCart = cart.find((item) => item.id === Product.id);
 
-  //     const response = await api.get(`/stock/${productId}`);
-  //     const productAmount = response.data.amount;
-  //     const stockIsFree = amount > productAmount;
+    if (!productExistInCart) {
+      toast('Produto não está adicionado no carrinho!');
+      return;
+    }
 
-  //     if (stockIsFree) {
-  //       toast.error('Quantidade solicitada fora de estoque');
-  //       return;
-  //     }
+    if (productExistInCart.quantityCart === 1) {
+      removeProduct(Product);
+      return;
+    }
 
-  //     const productExists = cart.some((cartProduct) => cartProduct.id === productId);
-  //     if (!productExists) {
-  //       toast.error('Erro na alteração de quantidade do produto');
-  //       return;
-  //     }
+    const updatedCart = cart.map((cartItem) => (cartItem.id === Product.id ? {
+      ...cartItem,
+      quantityCart: Number(cartItem.quantityCart) - 1,
+    } : cartItem));
 
-  //     const updatedCart = cart.map((cartItem) => (cartItem.id === productId ? {
-  //       ...cartItem,
-  //       amount,
-  //     } : cartItem));
-  //     setCart(updatedCart);
-  //     localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
-  //   } catch {
-  //     toast.error('Erro na alteração de quantidade do produto');
-  //   }
-  // };
+    setCart(updatedCart);
+    localStorage.setItem('@Nexfar:cart', JSON.stringify(updatedCart));
+    toast('Alterado quantidade do produto no carrinho!');
+  };
 
   return (
     <CartContext.Provider value={{
-      cart, addProduct, removeProduct,
+      cart, addProduct, removeProduct, removeQtdItemCart,
     }}
     >
       {children}

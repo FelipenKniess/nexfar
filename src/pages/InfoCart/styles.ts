@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  display: flex;
 
   .header-cart {
     display: flex;
@@ -56,6 +55,30 @@ export const Container = styled.div`
         svg {
           margin-left: 10px;
         }
+      }
+    }
+  }
+
+  .box-content {
+    display: flex;
+    flex-direction: column;
+
+    .cart-values {
+      width: 70%;
+      .content-cart-values {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #252525;
+        & + .content-cart-values {
+          margin-top: 5px;
+        }
+      }
+
+      .value-total {
+        margin-top: 5px;
+        text-align: right;
+        font-weight: bold;
       }
     }
   }
